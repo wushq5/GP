@@ -22,13 +22,40 @@ public final class R {
         public static final int activity_vertical_margin=0x7f040001;
     }
     public static final class drawable {
-        public static final int ic_launcher=0x7f020000;
+        public static final int course_info_blue=0x7f020000;
+        public static final int course_info_blue2=0x7f020001;
+        public static final int course_info_green=0x7f020002;
+        public static final int course_info_green2=0x7f020003;
+        public static final int course_info_orange=0x7f020004;
+        public static final int course_info_red=0x7f020005;
+        public static final int course_info_yellow=0x7f020006;
+        public static final int course_table_last_colum=0x7f020007;
+        public static final int course_text_view_bg=0x7f020008;
+        public static final int ic_action_new=0x7f020009;
+        public static final int ic_action_overflow=0x7f02000a;
+        public static final int ic_launcher=0x7f02000b;
     }
     public static final class id {
-        public static final int action_settings=0x7f080000;
+        public static final int action_settings=0x7f08000f;
+        public static final int btn_universal_top_bar_more=0x7f08000d;
+        public static final int btn_universal_top_bar_new=0x7f08000e;
+        public static final int iv_universal_top_bar_back=0x7f08000b;
+        public static final int rl_syllabus=0x7f08000a;
+        public static final int scroll_body=0x7f080009;
+        public static final int top_bar=0x7f080000;
+        public static final int tv_empty=0x7f080001;
+        public static final int tv_friday=0x7f080006;
+        public static final int tv_monday=0x7f080002;
+        public static final int tv_saturday=0x7f080007;
+        public static final int tv_sunday=0x7f080008;
+        public static final int tv_thursday=0x7f080005;
+        public static final int tv_tuesday=0x7f080003;
+        public static final int tv_universal_top_bar_txt=0x7f08000c;
+        public static final int tv_wednesday=0x7f080004;
     }
     public static final class layout {
         public static final int aty_main=0x7f030000;
+        public static final int universal_top_bar=0x7f030001;
     }
     public static final class menu {
         public static final int main=0x7f070000;
@@ -57,6 +84,7 @@ public final class R {
         Base application theme for API 14+. This theme completely replaces
         AppBaseTheme from BOTH res/values/styles.xml and
         res/values-v11/styles.xml on API 14+ devices.
+
     
  API 14 theme customizations can go here. 
          */
@@ -65,5 +93,6 @@ public final class R {
  All customizations that are NOT specific to a particular API-level can go here. 
          */
         public static final int AppTheme=0x7f060001;
+        public static final int syllabusTxt=0x7f060002;
     }
 }
