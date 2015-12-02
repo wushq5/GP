@@ -31,15 +31,27 @@ public final class R {
         public static final int course_info_yellow=0x7f020006;
         public static final int course_table_last_colum=0x7f020007;
         public static final int course_text_view_bg=0x7f020008;
-        public static final int ic_action_new=0x7f020009;
-        public static final int ic_action_overflow=0x7f02000a;
-        public static final int ic_launcher=0x7f02000b;
+        public static final int ic_about=0x7f020009;
+        public static final int ic_action_new=0x7f02000a;
+        public static final int ic_edit=0x7f02000b;
+        public static final int ic_import=0x7f02000c;
+        public static final int ic_launcher=0x7f02000d;
+        public static final int ic_logo=0x7f02000e;
+        public static final int ic_new_course=0x7f02000f;
+        public static final int ic_option=0x7f020010;
     }
     public static final class id {
-        public static final int action_settings=0x7f08000f;
-        public static final int btn_universal_top_bar_more=0x7f08000d;
-        public static final int btn_universal_top_bar_new=0x7f08000e;
-        public static final int iv_universal_top_bar_back=0x7f08000b;
+        public static final int action_settings=0x7f080016;
+        public static final int btn_universal_top_bar_right_1=0x7f080014;
+        public static final int btn_universal_top_bar_right_2=0x7f080015;
+        public static final int iv_universal_top_bar_left=0x7f080012;
+        public static final int ppw_new_note_audio=0x7f08000e;
+        public static final int ppw_new_note_photo=0x7f08000c;
+        public static final int ppw_new_note_txt=0x7f08000b;
+        public static final int ppw_new_note_video=0x7f08000d;
+        public static final int ppw_option_add=0x7f080010;
+        public static final int ppw_option_help=0x7f080011;
+        public static final int ppw_option_import=0x7f08000f;
         public static final int rl_syllabus=0x7f08000a;
         public static final int scroll_body=0x7f080009;
         public static final int top_bar=0x7f080000;
@@ -50,12 +62,14 @@ public final class R {
         public static final int tv_sunday=0x7f080008;
         public static final int tv_thursday=0x7f080005;
         public static final int tv_tuesday=0x7f080003;
-        public static final int tv_universal_top_bar_txt=0x7f08000c;
+        public static final int tv_universal_top_bar_txt=0x7f080013;
         public static final int tv_wednesday=0x7f080004;
     }
     public static final class layout {
         public static final int aty_main=0x7f030000;
-        public static final int universal_top_bar=0x7f030001;
+        public static final int ppw_aty_main_new_note=0x7f030001;
+        public static final int ppw_aty_main_option=0x7f030002;
+        public static final int universal_top_bar=0x7f030003;
     }
     public static final class menu {
         public static final int main=0x7f070000;
@@ -93,6 +107,7 @@ public final class R {
  All customizations that are NOT specific to a particular API-level can go here. 
          */
         public static final int AppTheme=0x7f060001;
+        public static final int popupTxt=0x7f060003;
         public static final int syllabusTxt=0x7f060002;
     }
 }

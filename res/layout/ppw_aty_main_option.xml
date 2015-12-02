@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="#90ee90"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/ppw_option_import"
+        style="@style/popupTxt"
+        android:layout_width="120dip"
+        android:layout_height="30dip"
+        android:drawableLeft="@drawable/ic_import"
+        android:drawablePadding="10dip"
+        android:text="一键导入" />
+
+    <View
+        android:layout_width="120dip"
+        android:layout_height="2dip"
+        android:background="#fff" />
+
+    <TextView
+        android:id="@+id/ppw_option_add"
+        style="@style/popupTxt"
+        android:layout_width="120dip"
+        android:layout_height="30dip"
+        android:drawablePadding="10dip"
+        android:drawableLeft="@drawable/ic_new_course"
+        android:text="手动添加" />
+
+    <View
+        android:layout_width="120dip"
+        android:layout_height="2dip"
+        android:background="#fff" />
+
+    <TextView
+        android:id="@+id/ppw_option_help"
+        style="@style/popupTxt"
+        android:layout_width="120dip"
+        android:layout_height="30dip"
+        android:drawableLeft="@drawable/ic_about"
+        android:drawablePadding="10dip"
+        android:text="关于" />
+
+</LinearLayout>

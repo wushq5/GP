@@ -5,7 +5,7 @@
     android:background="#3cc3f5" >
 
     <ImageView
-        android:id="@+id/iv_universal_top_bar_back"
+        android:id="@+id/iv_universal_top_bar_left"
         android:layout_width="40dip"
         android:layout_height="40dip"
         android:layout_alignParentLeft="true"
@@ -19,28 +19,29 @@
         android:layout_height="40dip"
         android:layout_centerVertical="true"
         android:layout_marginLeft="10dip"
-        android:layout_toRightOf="@id/iv_universal_top_bar_back"
+        android:layout_toRightOf="@id/iv_universal_top_bar_left"
         android:gravity="center"
         android:textColor="#fff"
         android:textSize="18sp"
         android:visibility="gone" />
 
     <Button
-        android:id="@+id/btn_universal_top_bar_more"
+        android:id="@+id/btn_universal_top_bar_right_1"
         android:layout_width="30dip"
         android:layout_height="30dip"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
-        android:layout_marginRight="5dip"
-        android:background="@drawable/ic_action_overflow" />
+        android:layout_marginRight="10dip"
+        android:background="@drawable/ic_option" />
 
+    <!-- 新建笔记 -->
     <Button
-        android:id="@+id/btn_universal_top_bar_new"
+        android:id="@+id/btn_universal_top_bar_right_2"
         android:layout_width="30dip"
         android:layout_height="30dip"
         android:layout_centerVertical="true"
-        android:layout_marginRight="10dip"
-        android:layout_toLeftOf="@id/btn_universal_top_bar_more"
+        android:layout_marginRight="20dip"
+        android:layout_toLeftOf="@id/btn_universal_top_bar_right_1"
         android:background="@drawable/ic_action_new" />
 
 </RelativeLayout>

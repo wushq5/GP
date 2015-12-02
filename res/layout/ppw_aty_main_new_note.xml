@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="#bdbdbd"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/ppw_new_note_txt"
+        style="@style/popupTxt"
+        android:layout_width="120dip"
+        android:layout_height="30dip"
+        android:drawableLeft="@drawable/ic_import"
+        android:drawablePadding="10dip"
+        android:text="纯文本" />
+
+    <View
+        android:layout_width="120dip"
+        android:layout_height="2dip"
+        android:background="#fff" />
+
+    <TextView
+        android:id="@+id/ppw_new_note_photo"
+        style="@style/popupTxt"
+        android:layout_width="120dip"
+        android:layout_height="30dip"
+        android:drawableLeft="@drawable/ic_new_course"
+        android:drawablePadding="10dip"
+        android:text="拍照" />
+
+    <View
+        android:layout_width="120dip"
+        android:layout_height="2dip"
+        android:background="#fff" />
+
+    <TextView
+        android:id="@+id/ppw_new_note_video"
+        style="@style/popupTxt"
+        android:layout_width="120dip"
+        android:layout_height="30dip"
+        android:drawableLeft="@drawable/ic_about"
+        android:drawablePadding="10dip"
+        android:text="录像" />
+
+    <View
+        android:layout_width="120dip"
+        android:layout_height="2dip"
+        android:background="#fff" />
+
+    <TextView
+        android:id="@+id/ppw_new_note_audio"
+        style="@style/popupTxt"
+        android:layout_width="120dip"
+        android:layout_height="30dip"
+        android:drawableLeft="@drawable/ic_about"
+        android:drawablePadding="10dip"
+        android:text="录音" />
+
+</LinearLayout>
