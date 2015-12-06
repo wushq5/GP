@@ -1,6 +1,7 @@
 package com.wsq.syllabus.main;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,14 +10,19 @@ import android.view.WindowManager.LayoutParams;
 import android.widget.PopupWindow;
 
 import com.wsq.syllabus.R;
+import com.wsq.syllabus.syllabus.LoginActivity_;
+import com.wsq.syllabus.syllabus.ManualAddActivity_;
 
 public class OptionPopupWin extends PopupWindow implements OnClickListener {
 
 	private View viewParent;
 	
+	private Context context;
+	
 	public OptionPopupWin(Context context, View parent) {
 		super(context);
 		
+		this.context = context;
 		this.viewParent = parent;
 		LayoutInflater inflater = (LayoutInflater) context  
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);  
@@ -58,11 +64,13 @@ public class OptionPopupWin extends PopupWindow implements OnClickListener {
 	public void onClick(View v) {
 		switch (v.getId()) {
 		case R.id.ppw_option_import:
-			
+			Intent login = new Intent(context, LoginActivity_.class);
+			context.startActivity(login);
 			showOrHideWindow();
 			break;
 		case R.id.ppw_option_add:
-			
+			Intent add = new Intent(context, ManualAddActivity_.class);
+			context.startActivity(add);
 			showOrHideWindow();
 			break;
 		case R.id.ppw_option_help:

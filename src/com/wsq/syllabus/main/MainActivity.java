@@ -82,6 +82,9 @@ public class MainActivity extends Activity {
 		this.ppwOption = new OptionPopupWin(MainActivity.this, btnOpt);
 		this.ppwNewNote = new NewNotePopupWin(MainActivity.this, btnNewNote);
 		
+		btnNewNote.setVisibility(View.VISIBLE);
+		btnOpt.setVisibility(View.VISIBLE);
+		
 		// 标志
 		ivLogo.setImageDrawable(getResources().getDrawable(R.drawable.ic_logo));
 		ivLogo.setVisibility(View.VISIBLE);
