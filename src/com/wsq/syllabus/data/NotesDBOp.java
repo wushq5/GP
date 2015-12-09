@@ -7,7 +7,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.wsq.syllabus.util.Config;
-import com.wsq.syllabus.util.TmpUitl;
+import com.wsq.syllabus.util.PublicUitl;
 
 public class NotesDBOp {
 	
@@ -79,8 +79,8 @@ public class NotesDBOp {
 				String videoUri = cursor.getString(cursor.getColumnIndex(NotesDB.VIDEO));
 
 				// 删除文件
-				TmpUitl.deleteFile(imageUri);
-				TmpUitl.deleteFile(videoUri);
+				PublicUitl.deleteFile(imageUri);
+				PublicUitl.deleteFile(videoUri);
 			    
 			    cursor.moveToNext();  
 			}
@@ -120,8 +120,8 @@ public class NotesDBOp {
 				String videoUri = cursor.getString(cursor.getColumnIndex(NotesDB.VIDEO));
 
 				// 删除文件
-				TmpUitl.deleteFile(imageUri);
-				TmpUitl.deleteFile(videoUri);
+				PublicUitl.deleteFile(imageUri);
+				PublicUitl.deleteFile(videoUri);
 			    
 			    cursor.moveToNext();  
 			}

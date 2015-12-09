@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff" >
+
+    <include
+        android:id="@+id/topbar"
+        layout="@layout/universal_top_bar" />
+
+    <LinearLayout
+        android:id="@+id/ll_import_year"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/topbar"
+        android:layout_marginTop="5dip"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="80dip"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="5dip"
+            android:gravity="center"
+            android:text="学年度："
+            android:textSize="18sp" />
+
+        <NumberPicker
+            android:id="@+id/np_import_year1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="10dip" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="5dip"
+            android:gravity="center"
+            android:text=" ~ "
+            android:textSize="18sp" />
+
+        <NumberPicker
+            android:id="@+id/np_import_year2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="10dip" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_import_term"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ll_import_year"
+        android:layout_marginTop="10dip"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="80dip"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="5dip"
+            android:gravity="center"
+            android:text="学期："
+            android:textSize="18sp" />
+
+        <NumberPicker
+            android:id="@+id/np_import_term"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="10dip" />
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/et_import_code"
+        android:layout_width="150dip"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ll_import_term"
+        android:layout_marginLeft="5dip"
+        android:hint="输入验证码" />
+
+    <ImageView
+        android:id="@+id/iv_import_code"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:layout_below="@id/et_import_code"
+        android:layout_marginLeft="5dip"
+        android:layout_marginTop="5dip" />
+
+    <Button
+        android:id="@+id/btn_import_ok"
+        android:layout_width="180dp"
+        android:layout_height="45dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/btn_universal_selector"
+        android:text="确定导入"
+        android:textColor="#fff" />
+
+</RelativeLayout>

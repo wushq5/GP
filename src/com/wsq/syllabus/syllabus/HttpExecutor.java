@@ -2,6 +2,7 @@ package com.wsq.syllabus.syllabus;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.security.MessageDigest;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,15 +12,24 @@ import org.apache.http.NameValuePair;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.client.methods.HttpUriRequest;
 import org.apache.http.cookie.Cookie;
 import org.apache.http.impl.client.AbstractHttpClient;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
+import org.apache.http.protocol.BasicHttpContext;
+import org.apache.http.protocol.ExecutionContext;
 import org.apache.http.protocol.HTTP;
+import org.apache.http.protocol.HttpContext;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.util.Log;
+
+import com.wsq.syllabus.util.Config;
+import com.wsq.syllabus.util.PublicUitl;
 
 public class HttpExecutor {
 
@@ -35,6 +45,9 @@ public class HttpExecutor {
 	
 	/** 单例对象 */
 	private static final HttpExecutor INSTANCE = new HttpExecutor();
+	
+	// 重定向后的sid字符串
+	private String sid = null;
 	
 	/**
 	 * 单例模式，私有化构造函数
@@ -138,7 +151,7 @@ public class HttpExecutor {
 		params.add(new BasicNameValuePair("gateway", "true"));
 		params.add(new BasicNameValuePair("j_code", code));
 		params.add(new BasicNameValuePair("lt", ""));
-		params.add(new BasicNameValuePair("password", "84337FE41AD4CB4EF49363241951D491"));
+		params.add(new BasicNameValuePair("password", getMD5(password)));
 		params.add(new BasicNameValuePair("username", sid));
 		
 		try {
@@ -164,5 +177,127 @@ public class HttpExecutor {
 		
 		// 帐号与密码不对应，登陆失败
 		return validity;
+	}
+	
+	/**
+	 * 获取重定向后的sid字段
+	 * @param username
+	 * @param password
+	 * @param code
+	 */
+	public void getSid(String username, String password, String code) {
+		HttpClient client = new DefaultHttpClient();
+		HttpContext httpContext = new BasicHttpContext();
+
+		// 声明HttpPost方法，指定URI
+		HttpPost httpRequest = new HttpPost(uriLogin);
+		
+		// 设置参数对
+		List<NameValuePair> params = new ArrayList<NameValuePair>();
+
+		params.add(new BasicNameValuePair("_eventId", "submit"));
+		params.add(new BasicNameValuePair("gateway", "true"));
+		params.add(new BasicNameValuePair("j_code", code));
+		params.add(new BasicNameValuePair("lt", ""));
+		params.add(new BasicNameValuePair("password", getMD5(password)));
+		params.add(new BasicNameValuePair("username", username));
+
+		try {
+			httpRequest.setHeader("Cookie", "JSESSIONID="
+					+ cookies.get(0).getValue());
+			httpRequest.setHeader("Host", "uems.sysu.edu.cn");
+			httpRequest.setHeader("Referer", "http://uems.sysu.edu.cn/elect/");
+			httpRequest.setHeader("User-Agent", "Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 6.3; WOW64; Trident/7.0; .NET4.0E; .NET4.0C)");
+			
+			// 设置实体，添加参数对
+			httpRequest.setEntity(new UrlEncodedFormEntity(params, HTTP.UTF_8));
+			// 执行HTTP请求
+			client.execute(httpRequest, httpContext);
+
+			HttpUriRequest realRequest = (HttpUriRequest) httpContext
+					.getAttribute(ExecutionContext.HTTP_REQUEST);
+
+			// 重定向后的URI为/elect/s/types?sid=94fab0dc-b777-4f47-b728-7c8d622809da
+			String redirectUri = realRequest.getURI().toString();
+			// 截取sid部分
+			sid = redirectUri.split("\\?")[1];
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	}
+	
+	/**
+	 * 获取课程表信息
+	 * @param year1
+	 * @param year2
+	 * @param term
+	 * @return
+	 */
+	public List<StringBuffer> getTable(int year1, int year2, int term) {
+
+		// 获取选课结果的URI
+		String uriAPI = "http://uems.sysu.edu.cn/elect/s/courseAll?xnd="+year1+"-"+year2+"&xq="+term+"&"
+				+ sid;
+
+		HttpGet httpRequest3 = new HttpGet(uriAPI);
+
+		try {
+			// 使用HttpGet方法，设置Header相关信息
+			httpRequest3.setHeader("Cookie", "JSESSIONID="
+					+ cookies.get(0).getValue());
+			httpRequest3.setHeader("Host", "uems.sysu.edu.cn");
+			httpRequest3.setHeader("Referer",
+					"http://uems.sysu.edu.cn/elect/s/types?" + sid);
+
+			// 执行Get请求
+			HttpResponse httpResponse2 = new DefaultHttpClient()
+					.execute(httpRequest3);
+
+
+			// 返回码为200即成功
+			if (httpResponse2.getStatusLine().getStatusCode() == 200) {
+				// 获取返回的实体
+				HttpEntity entity = httpResponse2.getEntity();
+				return PublicUitl.getCourse(entity);
+			} else {
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	/**
+	 * 获取MD5加密后的字符串
+	 * @param source
+	 * @return
+	 */
+	public final String getMD5(String source) {
+		char hexDigits[] = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
+				'A', 'B', 'C', 'D', 'E', 'F' };
+		try {
+			byte[] btInput = source.getBytes();
+			// 获得MD5摘要算法的 MessageDigest 对象
+			MessageDigest mdInst = MessageDigest.getInstance("MD5");
+			// 使用指定的字节更新摘要
+			mdInst.update(btInput);
+			// 获得密文
+			byte[] md = mdInst.digest();
+			// 把密文转换成十六进制的字符串形式
+			int j = md.length;
+			char str[] = new char[j * 2];
+			int k = 0;
+			for (int i = 0; i < j; i++) {
+				byte byte0 = md[i];
+				str[k++] = hexDigits[byte0 >>> 4 & 0xf];
+				str[k++] = hexDigits[byte0 & 0xf];
+			}
+			return new String(str);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 }

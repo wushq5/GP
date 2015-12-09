@@ -2,16 +2,15 @@ package com.wsq.syllabus.main;
 
 import android.content.Context;
 import android.graphics.drawable.ColorDrawable;
-import android.util.Log;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
 import android.view.WindowManager.LayoutParams;
 import android.widget.PopupWindow;
 
 import com.wsq.syllabus.R;
-import com.wsq.syllabus.util.TmpUitl;
+import com.wsq.syllabus.util.PublicUitl;
 
 public class NewNotePopupWin extends PopupWindow implements OnClickListener {
 
@@ -24,7 +23,7 @@ public class NewNotePopupWin extends PopupWindow implements OnClickListener {
 		this.viewParent = parent;
 		LayoutInflater inflater = (LayoutInflater) context  
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);  
-        View view = inflater.inflate(R.layout.ppw_aty_main_new_note, null);
+        View view = inflater.inflate(R.layout.ppw_aty_main_new_note, (ViewGroup) parent.getRootView());
         
         this.setContentView(view);
 		// 设置SelectPicPopupWindow弹出窗体的宽
@@ -53,7 +52,7 @@ public class NewNotePopupWin extends PopupWindow implements OnClickListener {
 	 */
 	public void showOrHideWindow() {
 		if (!this.isShowing()) {
-			this.showAsDropDown(viewParent, -TmpUitl.dip2px(context, 120f) / 2, 20);
+			this.showAsDropDown(viewParent, -PublicUitl.dip2px(context, 120f) / 2, 20);
 		} else {
 			this.dismiss();
 		}

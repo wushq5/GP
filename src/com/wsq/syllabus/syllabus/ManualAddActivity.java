@@ -13,7 +13,7 @@ import android.widget.EditText;
 import com.wsq.syllabus.R;
 import com.wsq.syllabus.data.CourseDBOp;
 import com.wsq.syllabus.data.NotesDBOp;
-import com.wsq.syllabus.util.TmpUitl;
+import com.wsq.syllabus.util.PublicUitl;
 
 @EActivity(R.layout.aty_manual_add)
 public class ManualAddActivity extends Activity {
@@ -155,7 +155,7 @@ public class ManualAddActivity extends Activity {
 					.show();
 			return legality = false;
 		}
-		day = TmpUitl.getWeekday(Integer.parseInt(tmp));
+		day = PublicUitl.getWeekday(Integer.parseInt(tmp));
 
 		// 检查课室，非空即可
 		tmp = etRoom.getText().toString();

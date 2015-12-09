@@ -66,4 +66,7 @@ public class Config {
 	public static final String DEFAULT = "默认";
 	
 	public static final String DIR = "NoteSyllabus";
+	
+	// -----------------------------------------------------------------------//
+	public static final String TEST = "MyTEST";
 }

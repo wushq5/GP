@@ -11,6 +11,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.widget.Button;
 import android.widget.EditText;
@@ -47,9 +48,9 @@ public class LoginActivity extends Activity {
 		
 		// 检查是否已经登陆过，是则自动输入学号与密码
 		if (Preferences.hasUser(this)) {
-//			Intent i = new Intent(this, ImportCourses.class);
-//			startActivity(i);
-//			finish();
+			Intent i = new Intent(this, ImportActivity_.class);
+			startActivity(i);
+			finish();
 		}
 		
 		// 获取网络访问实体
@@ -130,9 +131,9 @@ public class LoginActivity extends Activity {
 			// 存储用户学号与密码
 			Preferences.storeUserMsg(LoginActivity.this, sid, pwd);
 			// 跳至导入页面
-//			Intent i = new Intent(Login.this, ImportCourses.class);
-//			startActivity(i);
-//			finish();
+			Intent i = new Intent(LoginActivity.this, ImportActivity_.class);
+			startActivity(i);
+			finish();
 		}
 	}
 	
