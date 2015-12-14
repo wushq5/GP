@@ -1,29 +1,31 @@
 package com.wsq.syllabus.main;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.ViewGroup;
 import android.view.WindowManager.LayoutParams;
 import android.widget.PopupWindow;
 
 import com.wsq.syllabus.R;
+import com.wsq.syllabus.note.CreateNodeActivity_;
+import com.wsq.syllabus.util.Config;
 import com.wsq.syllabus.util.PublicUitl;
 
-public class NewNotePopupWin extends PopupWindow implements OnClickListener {
+public class CreateNotePopupWin extends PopupWindow implements OnClickListener {
 
 	private View viewParent;
 	private Context context;
 	
-	public NewNotePopupWin(Context context, View parent) {
+	public CreateNotePopupWin(Context context, View parent) {
 		super(context);
 		this.context = context;
 		this.viewParent = parent;
 		LayoutInflater inflater = (LayoutInflater) context  
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);  
-        View view = inflater.inflate(R.layout.ppw_aty_main_new_note, (ViewGroup) parent.getRootView());
+        View view = inflater.inflate(R.layout.ppw_aty_main_new_note, null);
         
         this.setContentView(view);
 		// 设置SelectPicPopupWindow弹出窗体的宽
@@ -58,26 +60,33 @@ public class NewNotePopupWin extends PopupWindow implements OnClickListener {
 		}
 	}
 
+	/**
+	 * 按照选择的笔记类型进行相应的创建
+	 */
 	@Override
 	public void onClick(View v) {
+		int noteType = 0;
 		switch (v.getId()) {
 		case R.id.ppw_new_note_txt:
-			
+			noteType = Config.NOTE_TYPE_TEXT;
 			showOrHideWindow();
 			break;
 		case R.id.ppw_new_note_photo:
-			
+			noteType = Config.NOTE_TYPE_IMAGE;
 			showOrHideWindow();
 			break;
 		case R.id.ppw_new_note_video:
-			
+			noteType = Config.NOTE_TYPE_VIDEO;
 			showOrHideWindow();
 			break;
 		case R.id.ppw_new_note_audio:
-			
+			noteType = -1;
 			showOrHideWindow();
 			break;
 		}
 		
+		Intent i = new Intent(context, CreateNodeActivity_.class);
+		i.putExtra(Config.NOTE_TYPE, noteType);
+		context.startActivity(i);
 	}
 }

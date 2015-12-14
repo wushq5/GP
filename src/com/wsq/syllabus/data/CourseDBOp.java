@@ -1,6 +1,8 @@
 package com.wsq.syllabus.data;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import android.content.ContentValues;
@@ -260,6 +262,46 @@ public class CourseDBOp {
 		}
 		
 		return conflict;
+	}
+	
+	/**
+	 * 获取当前的课程名称，没有则返回缺省字符串"默认"
+	 * 
+	 * @param context
+	 * @return
+	 */
+	public static String getCurrentCourse(Context context) {
+		String weekday = "";
+		String[] weekDays = { "星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六" };
+		Calendar cal = Calendar.getInstance();
+		Date d = new Date();
+		cal.setTime(d);
+		int day = cal.get(Calendar.DAY_OF_WEEK) - 1;
+		if (day < 0)
+			day = 0;
+		int currentHour = cal.get(Calendar.HOUR_OF_DAY);
+		int currentMinute = cal.get(Calendar.MINUTE);
+		int current_total_minutes = currentHour * 60 + currentMinute;
+
+		weekday = weekDays[day];
+
+		ArrayList<Course> courses = CourseDBOp.queryCourses(context,
+				CourseDB.DAY + "=?", new String[] { weekday });
+
+		// 计算当前时间是否处于某节课中
+		for (int i = 0; i < courses.size(); i++) {
+			// 某节课开始的时间，以总分钟计算
+			int min_m = 8 * 60 + (courses.get(i).getStartLesson() - 1) * 55;
+			// 某节课结束的时间，以总分钟计算
+			int max_m = min_m + courses.get(i).getTotalLesson() * 55 - 10;
+
+			if (min_m <= current_total_minutes
+					&& max_m >= current_total_minutes) {
+				return courses.get(i).getName();
+			}
+		}
+
+		return Config.DEFAULT;
 	}
 	
 	/**

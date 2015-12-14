@@ -65,10 +65,7 @@ public class ImportActivity extends Activity implements OnValueChangeListener{
 	
 	@AfterViews
 	public void init() {
-		ivTopPic.setImageDrawable(getResources().getDrawable(R.drawable.bt_back));
-		ivTopPic.setVisibility(View.VISIBLE);
 		tvTopTxt.setText("导入课表");
-		tvTopTxt.setVisibility(View.VISIBLE);
 		
 		npYear1.setOnValueChangedListener(this);
 		npYear2.setOnValueChangedListener(this);

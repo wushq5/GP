@@ -5,7 +5,9 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.apache.http.HttpEntity;
@@ -24,6 +26,18 @@ public class PublicUitl {
 	public static int px2dip(Context context, float pxValue) {
 		final float scale = context.getResources().getDisplayMetrics().density;
 		return (int) (pxValue / scale + 0.5f);
+	}
+	
+	/**
+	 * 获取当前时间
+	 * @param pattern 呈现的模式，如yyyy年MM月dd日 HH时mm分ss秒
+	 * @return
+	 */
+	public static String getCurrentTime(String pattern) {
+		SimpleDateFormat format = new SimpleDateFormat(pattern);
+		Date d = new Date();
+		String str = format.format(d);
+		return str;
 	}
 	
 	/**

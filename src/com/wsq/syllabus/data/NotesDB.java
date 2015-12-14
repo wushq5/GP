@@ -22,6 +22,10 @@ public class NotesDB extends SQLiteOpenHelper {
 		super(context, "notes", null, 1);
 		this.list = list;
 	}
+	
+	public NotesDB(Context context) {
+		super(context, "notes", null, 1);
+	}
 
 	@Override
 	public void onCreate(SQLiteDatabase db) {

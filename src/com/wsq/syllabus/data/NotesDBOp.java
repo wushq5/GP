@@ -1,11 +1,14 @@
 package com.wsq.syllabus.data;
 
 import java.util.ArrayList;
+import java.util.List;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+import com.wsq.syllabus.note.NoteCatalogEntity;
 import com.wsq.syllabus.util.Config;
 import com.wsq.syllabus.util.PublicUitl;
 
@@ -136,5 +139,62 @@ public class NotesDBOp {
 		dbReader.close();
 		dbWriter.close();
 		notesDB.close();
+	}
+	
+	/**
+	 * 存储单个笔记
+	 * @param context 上下文实例
+	 * @param content 笔记文字
+	 * @param picDir 图片路径
+	 * @param videoDir 录像路径
+	 */
+	public static void storeNote(Context context, String content,
+			String picDir, String videoDir) {
+		NotesDB notesDB = new NotesDB(context);
+
+		SQLiteDatabase dbWriter = notesDB.getWritableDatabase();
+		
+		ContentValues cv = new ContentValues();
+		cv.put(NotesDB.CONTENT, content);
+		cv.put(NotesDB.TIME, PublicUitl.getCurrentTime("yyyy-MM-dd HH:mm"));
+		cv.put(NotesDB.IMAGE, picDir);
+		cv.put(NotesDB.VIDEO, videoDir);
+		
+		// 计算出当前时间所属的课程，若不属于所有课程则属于"默认"
+		String tableName = CourseDBOp.getCurrentCourse(context);
+		dbWriter.insert(tableName, null, cv);
+		
+		dbWriter.close();
+		notesDB.close();
+	}
+	
+	/**
+	 * 获取各个课程的笔记数量
+	 * 
+	 * @param context
+	 * @return
+	 */
+	public static List<NoteCatalogEntity> getNotesCount(Context context) {
+		// 先获取课程名称
+		List<String> courses = CourseDBOp.getCoursesName(context);
+
+		NotesDB notesDB = new NotesDB(context);
+		SQLiteDatabase dbReader = notesDB.getReadableDatabase();
+
+		List<NoteCatalogEntity> noteNums = new ArrayList<NoteCatalogEntity>();
+
+		Cursor cursor;
+		for (int i = 0; i < courses.size(); i++) {
+			String course = courses.get(i).replace(" ", "");
+			cursor = dbReader.query(course, null, null, null, null, null, null);
+			int count = cursor.getCount();
+			noteNums.add(new NoteCatalogEntity(courses.get(i), count));
+		}
+
+		cursor = null;
+		dbReader.close();
+		notesDB.close();
+		
+		return noteNums;
 	}
 }

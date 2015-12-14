@@ -26,6 +26,7 @@ import com.wsq.syllabus.R;
 import com.wsq.syllabus.data.CourseDB;
 import com.wsq.syllabus.data.CourseDBOp;
 import com.wsq.syllabus.data.NotesDBOp;
+import com.wsq.syllabus.note.NoteCatalogActivity_;
 import com.wsq.syllabus.syllabus.Course;
 import com.wsq.syllabus.syllabus.LoginActivity_;
 import com.wsq.syllabus.util.Config;
@@ -73,7 +74,7 @@ public class MainActivity extends Activity implements OnClickListener {
 	/** 顶部栏选项按钮弹窗 */
 	private OptionPopupWin ppwOption = null;
 	/** 顶部栏新建笔记按钮弹窗 */
-	private NewNotePopupWin ppwNewNote = null;
+	private CreateNotePopupWin ppwNewNote = null;
 	
 	/** 屏幕宽度 */ 
 	private int screenWidth;
@@ -105,7 +106,7 @@ public class MainActivity extends Activity implements OnClickListener {
 	 */
 	public void initTopBar() {
 		this.ppwOption = new OptionPopupWin(MainActivity.this, btnOpt);
-		this.ppwNewNote = new NewNotePopupWin(MainActivity.this, btnNewNote);
+		this.ppwNewNote = new CreateNotePopupWin(MainActivity.this, btnNewNote);
 		
 		btnNewNote.setVisibility(View.VISIBLE);
 		btnOpt.setVisibility(View.VISIBLE);
@@ -113,11 +114,9 @@ public class MainActivity extends Activity implements OnClickListener {
 		
 		// 标志
 		ivLogo.setImageDrawable(getResources().getDrawable(R.drawable.ic_logo));
-		ivLogo.setVisibility(View.VISIBLE);
 		
 		// App名称
 		tvTopbarTxt.setText("东京冷");
-		tvTopbarTxt.setVisibility(View.VISIBLE);
 	}
 	
 	/**
@@ -152,9 +151,9 @@ public class MainActivity extends Activity implements OnClickListener {
 				tx.setId((i - 1) * 8 + j);
 				// 除了最后一列，都使用course_text_view_bg背景（最后一列没有右边框）
 				if (j < 8)
-					tx.setBackground(getResources().getDrawable(R.drawable.course_text_view_bg));
+					tx.setBackgroundDrawable(getResources().getDrawable(R.drawable.course_text_view_bg));
 				else
-					tx.setBackground(getResources().getDrawable(R.drawable.course_table_last_colum));
+					tx.setBackgroundDrawable(getResources().getDrawable(R.drawable.course_table_last_colum));
 				// 相对布局参数
 				RelativeLayout.LayoutParams rp = new RelativeLayout.LayoutParams(
 						gridWidth * 33 / 32 + 1, gridHeight);
@@ -279,7 +278,8 @@ public class MainActivity extends Activity implements OnClickListener {
 	 */
 	@Click(R.id.btn_universal_top_bar_right_3)
 	public void onBtnNoteListClick() {
-		
+		Intent i = new Intent(this, NoteCatalogActivity_.class);
+		startActivity(i);
 	}
 
 	/**
