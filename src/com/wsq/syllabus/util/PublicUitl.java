@@ -13,6 +13,7 @@ import java.util.List;
 import org.apache.http.HttpEntity;
 
 import android.content.Context;
+import android.os.Environment;
 
 import com.wsq.syllabus.syllabus.Course;
 
@@ -50,6 +51,19 @@ public class PublicUitl {
 		if (uri.length() != 0) {
 			File f = new File(uri);
 			f.delete();
+		}
+	}
+	
+	/**
+	 * 检测是否插入sdcard
+	 * @return
+	 */
+	public static boolean hasSdcard() {
+		String status = Environment.getExternalStorageState();
+		if (status.equals(Environment.MEDIA_MOUNTED)) {
+			return true;
+		} else {
+			return false;
 		}
 	}
 	

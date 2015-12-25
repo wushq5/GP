@@ -37,7 +37,6 @@
         android:visibility="gone" />
 
     <!-- 新建笔记 -->
-
     <Button
         android:id="@+id/btn_universal_top_bar_right_2"
         android:layout_width="30dip"
@@ -45,7 +44,7 @@
         android:layout_centerVertical="true"
         android:layout_marginRight="20dip"
         android:layout_toLeftOf="@id/btn_universal_top_bar_right_1"
-        android:background="@drawable/ic_action_new"
+        android:background="@drawable/ic_edit"
         android:visibility="gone" />
 
     <Button

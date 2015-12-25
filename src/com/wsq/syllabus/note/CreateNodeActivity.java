@@ -13,6 +13,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.view.View;
 import android.widget.EditText;
@@ -47,6 +48,10 @@ public class CreateNodeActivity extends Activity {
 	@Extra(Config.NOTE_TYPE)
 	public int noteType = 0;
 
+	private File rootDir;
+	private File picDir;
+	private File videoDir;
+	
 	private File photoFile;
 	private File videoFile;
 	
@@ -63,21 +68,30 @@ public class CreateNodeActivity extends Activity {
 	 * 初始化文件保存路径
 	 */
 	public void initDir() {
-		ROOT_DIR = getFilesDir().getAbsolutePath() + "/NoteSyllabus";
-		PIC_DIR = ROOT_DIR + "/Picture/";
-		VIDEO_DIR = ROOT_DIR + "/Video/";
+		// 若插入sdcard，则在sdcard内创建新目录
+		if (PublicUitl.hasSdcard()) {
+			ROOT_DIR = Environment.getExternalStorageDirectory()
+					.getAbsoluteFile() + "/Syllabus";
+		}
+		// 否则在data目录下创建新目录
+		else {
+			ROOT_DIR = getFilesDir().getAbsolutePath() + "/Syllabus";
+		}
+		
+		PIC_DIR = ROOT_DIR + "/Pictures";
+		VIDEO_DIR = ROOT_DIR + "/Videos";
 
-		File rootDir = new File(ROOT_DIR);
+		rootDir = new File(ROOT_DIR);
 		if (!rootDir.exists()) {
 			rootDir.mkdirs();
 		}
 		
-		File picDir = new File(PIC_DIR);
+		picDir = new File(PIC_DIR);
 		if (!picDir.exists()) {
 			picDir.mkdirs();
 		}
 		
-		File videoDir = new File(VIDEO_DIR);
+		videoDir = new File(VIDEO_DIR);
 		if (!videoDir.exists()) {
 			videoDir.mkdirs();
 		}
@@ -98,20 +112,22 @@ public class CreateNodeActivity extends Activity {
 			vvVideo.setVisibility(View.GONE);
 			// 调用系统摄像头拍照
 			Intent iimg = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-			photoFile = new File(PIC_DIR + PublicUitl.getCurrentTime("yyyyMMdd_HHmmss") + ".jpg");
+			photoFile = new File(picDir.getAbsoluteFile() + "/" + PublicUitl.getCurrentTime("yyyyMMdd_HHmmss") + ".jpg");
 
 			iimg.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(photoFile));
 			startActivityForResult(iimg, 1);
-
+			break;
 		case Config.NOTE_TYPE_VIDEO:
 			ivPic.setVisibility(View.GONE);
 			vvVideo.setVisibility(View.VISIBLE);
 			// 调用系统摄像头录像
 			Intent video = new Intent(MediaStore.ACTION_VIDEO_CAPTURE);
-			videoFile = new File(VIDEO_DIR + PublicUitl.getCurrentTime("yyyyMMdd_HHmmss") + ".mp4");
+			videoFile = new File(videoDir.getAbsoluteFile() + "/" + PublicUitl.getCurrentTime("yyyyMMdd_HHmmss") + ".mp4");
 			
 			video.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(videoFile));
 			startActivityForResult(video, 2);
+			break;
+			
 		default:
 			break;
 		}
@@ -123,7 +139,8 @@ public class CreateNodeActivity extends Activity {
 	@Click(R.id.btn_createnote_save)
 	public void onBtnSaveClick() {
 		NotesDBOp.storeNote(this, etTxt.getText().toString(),
-				photoFile.getPath(), videoFile.getPath());
+				photoFile + "", videoFile + "");
+		finish();
 	}
 	
 	@Click(R.id.btn_createnote_cancel)

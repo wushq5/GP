@@ -13,18 +13,40 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.nostra13.universalimageloader.core.DisplayImageOptions;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.assist.ImageScaleType;
+import com.nostra13.universalimageloader.core.download.ImageDownloader.Scheme;
 import com.wsq.syllabus.R;
 
 public class NoteListAdapter extends BaseAdapter {
 
+	/** 图片显示选项 */
+	private DisplayImageOptions options;
+	/** UIL实体 */
+	private ImageLoader imageLoader;
+	
 	private Context context;
 	private Cursor cursor;
 
 	public NoteListAdapter(Context context, Cursor cursor) {
 		this.context = context;
 		this.cursor = cursor;
+		
+		// 初始化图片显示选项
+		options = new DisplayImageOptions.Builder()
+				.showImageForEmptyUri(R.drawable.ic_launcher)
+				.showImageOnFail(R.drawable.ic_launcher)
+				.cacheInMemory(true)
+				.cacheOnDisk(true)
+				.bitmapConfig(Bitmap.Config.RGB_565)
+				.imageScaleType(ImageScaleType.IN_SAMPLE_INT)
+				.build();     
+		
+		// 获取单例
+		imageLoader = ImageLoader.getInstance();
 	}
-
+	
 	@Override
 	public int getCount() {
 		return cursor.getCount();
@@ -68,9 +90,11 @@ public class NoteListAdapter extends BaseAdapter {
 
 		viewHolder.tvContent.setText(content);
 		viewHolder.tvTime.setText(time);
-		if (url.length() != 0)
-			viewHolder.ivPic.setImageBitmap(getImageThumbnail(url, 200, 200));
-		if (url_video.length() != 0)
+		if (!url.equals("null")) {
+			imageLoader.displayImage(Scheme.FILE.wrap(url), viewHolder.ivPic, options);
+//			viewHolder.ivPic.setImageBitmap(getImageThumbnail(url, 200, 200));
+		}
+		if (!url_video.equals("null"))
 			viewHolder.ivPic.setImageBitmap(getVideoThumbnail(url_video, 200, 200,
 					MediaStore.Images.Thumbnails.MICRO_KIND));
 		

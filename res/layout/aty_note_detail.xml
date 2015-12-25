@@ -2,7 +2,64 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background"
     android:orientation="vertical" >
-    
+
+    <include layout="@layout/universal_top_bar" />
+
+    <ImageView
+        android:id="@+id/iv_note_detail_pic"
+        android:layout_width="match_parent"
+        android:layout_height="200dip"
+        android:layout_margin="10dip"
+        android:visibility="gone" />
+
+    <VideoView
+        android:id="@+id/vv_note_detail_video"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_margin="10dip"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/tv_note_detail_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dip"
+        android:gravity="top|left"
+        android:textSize="15sp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dip"
+        android:layout_weight="1" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dip"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/btn_note_detail_del"
+            android:layout_width="130dp"
+            android:layout_height="40dp"
+            android:layout_alignParentLeft="true"
+            android:layout_margin="10dip"
+            android:background="@drawable/btn_universal_selector"
+            android:text="删除"
+            android:textColor="#fff"
+            android:textSize="18sp" />
+
+        <Button
+            android:id="@+id/btn_note_detail_check"
+            android:layout_width="130dp"
+            android:layout_height="40dp"
+            android:layout_alignParentRight="true"
+            android:layout_margin="10dip"
+            android:background="@drawable/btn_universal_selector"
+            android:text="查看详情"
+            android:textColor="#fff"
+            android:textSize="18sp" />
+    </RelativeLayout>
 
 </LinearLayout>

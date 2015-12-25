@@ -169,6 +169,22 @@ public class NotesDBOp {
 	}
 	
 	/**
+	 * 删除笔记
+	 * @param context
+	 * @param table 表名
+	 * @param id 笔记的id，唯一
+	 */
+	public static void deleteNote(Context context, String table, String id) {
+		NotesDB notesDB = new NotesDB(context);
+		SQLiteDatabase dbWriter = notesDB.getWritableDatabase();
+		
+		dbWriter.delete(table, "_id="+id, null);
+		
+		dbWriter.close();
+		notesDB.close();
+	}
+	
+	/**
 	 * 获取各个课程的笔记数量
 	 * 
 	 * @param context
