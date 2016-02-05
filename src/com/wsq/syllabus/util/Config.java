@@ -20,22 +20,12 @@ public class Config {
 			R.drawable.course_info_orange, R.drawable.course_info_yellow,
 			R.drawable.course_info_blue2, R.drawable.course_info_green2 };
 
-	// 左拉菜单选项
-	public static final String[] MENU_LIST = new String[] { "导入课表",
-			"添加课程 / 事务", "课堂笔记", "删除信息" };
-
 	// 左拉菜单"笔记"选项的子菜单
-	public static final String[] NOTE_SUB_MENU = new String[] { "查看笔记", "新建笔记" };
 	public static final String NOTE_TYPE = "note_type";
 	public static final int NOTE_TYPE_TEXT = 1;
 	public static final int NOTE_TYPE_IMAGE = 2;
 	public static final int NOTE_TYPE_VIDEO = 3;
-	public static final String[] NOTE_TYPE_SELECT = new String[] { "文本", "拍照",
-			"视频" };
-
-	// AtionBar的名字
-	public static final String ACTIONBAR_CLOSE_TITLE = "Note课程表";
-	public static final String ACTIONBAR_OPEN_TITLE = "请选择";
+	public static final int NOTE_TYPE_VOICE = 4;
 
 	// -----------------------------------------------------------------------//
 	/*

@@ -80,7 +80,7 @@ public class CreateNotePopupWin extends PopupWindow implements OnClickListener {
 			showOrHideWindow();
 			break;
 		case R.id.ppw_new_note_audio:
-			noteType = -1;
+			noteType = Config.NOTE_TYPE_VOICE;
 			showOrHideWindow();
 			break;
 		}

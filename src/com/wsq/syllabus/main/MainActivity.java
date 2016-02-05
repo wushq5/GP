@@ -21,14 +21,13 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-
+ 
 import com.wsq.syllabus.R;
 import com.wsq.syllabus.data.CourseDB;
 import com.wsq.syllabus.data.CourseDBOp;
 import com.wsq.syllabus.data.NotesDBOp;
-import com.wsq.syllabus.note.NoteCatalogActivity_;
-import com.wsq.syllabus.syllabus.Course;
-import com.wsq.syllabus.syllabus.LoginActivity_;
+import com.wsq.syllabus.note.*;
+import com.wsq.syllabus.syllabus.*;
 import com.wsq.syllabus.util.Config;
 import com.wsq.syllabus.util.PublicUitl;
 
