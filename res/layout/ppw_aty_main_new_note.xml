@@ -10,7 +10,7 @@
         style="@style/popupTxt"
         android:layout_width="120dip"
         android:layout_height="30dip"
-        android:drawableLeft="@drawable/ic_import"
+        android:drawableLeft="@drawable/ic_text"
         android:drawablePadding="10dip"
         android:text="纯文本" />
 
@@ -24,7 +24,7 @@
         style="@style/popupTxt"
         android:layout_width="120dip"
         android:layout_height="30dip"
-        android:drawableLeft="@drawable/ic_new_course"
+        android:drawableLeft="@drawable/ic_camera"
         android:drawablePadding="10dip"
         android:text="拍照" />
 
@@ -38,7 +38,7 @@
         style="@style/popupTxt"
         android:layout_width="120dip"
         android:layout_height="30dip"
-        android:drawableLeft="@drawable/ic_about"
+        android:drawableLeft="@drawable/ic_video"
         android:drawablePadding="10dip"
         android:text="录像" />
 
@@ -52,7 +52,7 @@
         style="@style/popupTxt"
         android:layout_width="120dip"
         android:layout_height="30dip"
-        android:drawableLeft="@drawable/ic_about"
+        android:drawableLeft="@drawable/ic_mic"
         android:drawablePadding="10dip"
         android:text="录音" />
 

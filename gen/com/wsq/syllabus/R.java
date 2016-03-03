@@ -12,12 +12,13 @@ public final class R {
     }
     public static final class color {
         public static final int background=0x7f040000;
-        public static final int black=0x7f040002;
-        public static final int green=0x7f040003;
+        public static final int black=0x7f040003;
+        public static final int green=0x7f040004;
         public static final int grey=0x7f040001;
-        public static final int red=0x7f040004;
-        public static final int universal_txt=0x7f040006;
-        public static final int white=0x7f040005;
+        public static final int grey2=0x7f040002;
+        public static final int red=0x7f040005;
+        public static final int universal_txt=0x7f040007;
+        public static final int white=0x7f040006;
     }
     public static final class dimen {
         /**  Default screen margins, per the Android Design guidelines. 
@@ -49,13 +50,18 @@ public final class R {
         public static final int ic_about=0x7f02000f;
         public static final int ic_account=0x7f020010;
         public static final int ic_action_new=0x7f020011;
-        public static final int ic_edit=0x7f020012;
-        public static final int ic_import=0x7f020013;
-        public static final int ic_launcher=0x7f020014;
-        public static final int ic_logo=0x7f020015;
-        public static final int ic_new_course=0x7f020016;
-        public static final int ic_option=0x7f020017;
-        public static final int ic_password=0x7f020018;
+        public static final int ic_camera=0x7f020012;
+        public static final int ic_edit=0x7f020013;
+        public static final int ic_import=0x7f020014;
+        public static final int ic_launcher=0x7f020015;
+        public static final int ic_logo=0x7f020016;
+        public static final int ic_mic=0x7f020017;
+        public static final int ic_new_course=0x7f020018;
+        public static final int ic_option=0x7f020019;
+        public static final int ic_password=0x7f02001a;
+        public static final int ic_text=0x7f02001b;
+        public static final int ic_video=0x7f02001c;
+        public static final int sl_listview_universal_bg=0x7f02001d;
     }
     public static final class id {
         public static final int action_settings=0x7f090047;

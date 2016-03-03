@@ -27,6 +27,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="5dip"
         android:gravity="top|left"
+        android:textColor="@color/universal_txt"
         android:textSize="15sp" />
 
     <View

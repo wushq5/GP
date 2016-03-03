@@ -11,7 +11,8 @@
         android:id="@+id/lv_note_catalog"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dip" >
+        android:divider="@color/grey2"
+        android:dividerHeight="3dip" >
     </ListView>
 
 </LinearLayout>

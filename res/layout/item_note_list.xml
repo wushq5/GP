@@ -26,6 +26,7 @@
             android:layout_alignParentTop="true"
             android:ellipsize="end"
             android:singleLine="true"
+            android:textColor="@color/universal_txt"
             android:textSize="18sp" />
 
         <TextView
